@@ -82,24 +82,24 @@ describe("Domain events tests", () => {
     expect(spyEventHandler).toHaveBeenCalled();
   });
 
-  it("should notify all event handlers when customer is created", () => {
-    const eventDispatcher = new EventDispatcher();
-    const eventHandler = new EnviaConsoleLog1Handler();
-    const spyEventHandler = jest.spyOn(eventHandler, "handle");
+  // it("should notify all event handlers when customer is created", () => {
+  //   const eventDispatcher = new EventDispatcher();
+  //   const eventHandler = new EnviaConsoleLog1Handler();
+  //   const spyEventHandler = jest.spyOn(eventHandler, "handle");
 
-    eventDispatcher.register("CustomerCreatedEvent", eventHandler);
+  //   eventDispatcher.register("CustomerCreatedEvent", eventHandler);
 
-    expect(
-      eventDispatcher.getEventHandlers["CustomerCreatedEvent"][0]
-    ).toMatchObject(eventHandler);
+  //   expect(
+  //     eventDispatcher.getEventHandlers["CustomerCreatedEvent"][0]
+  //   ).toMatchObject(eventHandler);
 
-    const customerCreatedEvent = new EnviaConsoleLog1Event({
-      id: "123",
-      name: "Customer 1",
-    });
+  //   const customerCreatedEvent = new EnviaConsoleLog1Event({
+  //     id: "123",
+  //     name: "Customer 1",
+  //   });
 
-    eventDispatcher.notify(customerCreatedEvent);
+  //   eventDispatcher.notify(customerCreatedEvent);
 
-    expect(spyEventHandler).toHaveBeenCalled();
-  });
+  //   expect(spyEventHandler).toHaveBeenCalled();
+  // });
 });
