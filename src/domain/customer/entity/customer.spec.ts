@@ -60,4 +60,23 @@ describe("Customer unit tests", () => {
     customer.addRewardPoints(10);
     expect(customer.rewardPoints).toBe(20);
   });
+
+  it("should trigger event when customer is created", () => {
+    const spy = jest.spyOn(Customer.getEventHandler1(), "handle");
+    const spy2 = jest.spyOn(Customer.getEventHandler2(), "handle");
+
+    new Customer("1", "Customer 1");
+
+
+    expect(spy).toHaveBeenCalled();
+    expect(spy2).toHaveBeenCalled();
+  })
+
+  it("should trigger event when customer address change", () => {
+    const spy = jest.spyOn(Customer.getEventHandlerAddress(), "handle");
+    const customer = new Customer("1", "Customer 1");
+    const address = new Address("Street 1", 123, "13330-250", "São Paulo");
+    customer.changeAddress(address);
+    expect(spy).toHaveBeenCalled();
+  })
 });
